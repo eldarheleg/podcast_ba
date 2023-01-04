@@ -8,6 +8,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/registration/bindings/registration_binding.dart';
 import '../modules/registration/views/registration_view.dart';
+import '../modules/welcome/bindings/welcome_binding.dart';
+import '../modules/welcome/views/welcome_view.dart';
 
 part 'app_routes.dart';
 
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.WELCOME,
+      page: () => const WelcomeView(),
+      binding: WelcomeBinding(),
     ),
   ];
 }
