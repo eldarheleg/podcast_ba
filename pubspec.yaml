@@ -12,6 +12,19 @@ dependencies:
     sdk: flutter
   sqflite: ^2.2.2
   path_provider: ^2.0.11
+  http: ^0.13.5
+  flutter_native_splash: ^2.2.16
+  flutter_launcher_icons: ^0.11.0
+
+flutter_native_splash:
+  color: "#8873FE"
+  image: assets/images/splash_image.png
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: assets/images/app_icon.png
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
