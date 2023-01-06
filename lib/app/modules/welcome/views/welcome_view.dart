@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
 import 'package:podcast_ba/app/common/spaces.dart';
 import 'package:podcast_ba/app/common/styles.dart';
+import 'package:podcast_ba/app/modules/widgets/rounded_button.dart';
 
 import '../controllers/welcome_controller.dart';
 
@@ -14,38 +16,42 @@ class WelcomeView extends GetView<WelcomeController> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Container(
-      child: Column(
-        children: [
-          Stack(
-              alignment: AlignmentDirectional.bottomEnd,
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40),bottomLeft: Radius.circular(40),bottomRight: Radius.circular(100),),
-                  child: Container(
-                    height: height*0.6,
-                    width: width,
-                    child: Image.asset(welcomeScreenImage,fit: BoxFit.cover,),
-                    
+      resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Container(
+              child: Column(
+          children: [
+            Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40),bottomLeft: Radius.circular(40),bottomRight: Radius.circular(100),),
+                    child: Container(
+                      height: height*0.6,
+                      width: width,
+                      child: Image.asset(welcomeScreenImage,fit: BoxFit.cover,),
+                    ),
                   ),
-                ),
-                Image.asset(playButtonImage),
-                
-              ],
+                  Image.asset(playButtonImage),
+                ],
+            ),
+            const SizedBox(height: 20,),
+            const Text("Podcast", style: xlargeText,),
+            const SizedBox(height: 20,),
+            const Text("Listen your favourite podcast\nAnywhere, Anytime", style: largeText,textAlign: TextAlign.center,),
+            const SizedBox(height: 30,),
+            roundedButtonStyle(height*0.06, width, 35, "Log In",primaryColor,whiteColor,largeTextButton),
+            const SizedBox(height: 10,),
+            roundedButtonStyle(height*0.06, width, 35, "Sign Up",whiteColor, primaryColor,largeTextButton),
+          ],
+              ),
+            ),
           ),
-          SizedBox(height: 20,),
-          const Text("Podcast", style: xlargeText,),
-          SizedBox(height: 20,),
-          const Text("Listen your favourite podcast\nAnywhere, Anytime", style: largeText,textAlign: TextAlign.center,),
-          SizedBox(height: 40,),
-          ElevatedButton(onPressed:() {
-            
-          }, child: const Text("Login"))
-        ],
-      ),
-    ),
         ));
   }
+
+  
 }

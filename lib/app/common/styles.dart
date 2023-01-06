@@ -28,3 +28,7 @@ const linkText = TextStyle(
   color: linkColor,
   fontSize: medium,
 );
+
+const largeTextButton = TextStyle(
+  fontSize: large,
+);
