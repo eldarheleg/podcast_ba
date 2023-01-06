@@ -11,6 +11,7 @@ Future<void> main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(
     GetMaterialApp(
+      theme: ThemeData(fontFamily: 'Lato'),
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

@@ -13,8 +13,14 @@ const mediumBoldText = TextStyle(
   fontSize: medium,
 );
 
+const xlargeText = TextStyle(
+  color: textColorBlack,
+  fontSize: extraExtraLarge,
+  fontWeight: FontWeight.bold
+);
+
 const largeText = TextStyle(
-  color: Colors.black,
+  color: textColor,
   fontSize: large,
 );
 
