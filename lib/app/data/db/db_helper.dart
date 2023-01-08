@@ -1,75 +1,72 @@
 import 'dart:io';
-import 'package:path/path.dart';
-import 'dart:async';
 import 'package:path_provider/path_provider.dart';
+
 import 'package:podcast_ba/app/data/models/user.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
-class DatabaseHelper {
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
+class DbHelper {
   static Database? _db;
-  Future<Database> get db async => _db ?? await initDb();
+
+  static const String db_name = 'podcast.db';
+  static const String table_users = 'users';
+  static const int version = 1;
+
+  static const String firstName = 'firstname';
+  static const String lastName = 'lastname';
+  static const String email = 'email';
+  static const String password = 'password';
+
+  Future<Database?> get db async {
+    if (_db != null) {
+      return _db;
+    }
+    _db = await initDb();
+    return _db;
+  }
 
   initDb() async {
-    Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, "podcast.db");
-    var ourDb = await openDatabase(path, version: 1, onCreate: _onCreate);
-    return ourDb;
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, db_name);
+    var db = await openDatabase(path, version: version, onCreate: _onCreate);
+    return db;
   }
 
-  void _onCreate(Database db, int version) async {
-    await db.execute(
-        "CREATE TABLE Users(id INTEGER PRIMARY KEY,firstname TEXT,lastname TEXT,email TEXT, password TEXT)");
-    print("Table is created");
+  _onCreate(Database db, int intVersion) async {
+    await db.execute("CREATE TABLE $table_users (id INTEGER PRIMARY KEY,$firstName TEXT,$lastName TEXT,$email TEXT,$password TEXT)",);
   }
 
-  Future<List<User>> getAllUsers() async {
-    Database db = await instance.db;
-    var users = await db.query('users');
-    List<User> usersList =
-        users.isEmpty ? [] : users.map((e) => User.fromJson(e)).toList();
-    print(usersList);
-    return usersList;
+  Future<int> saveData(User user) async {
+    var dbClient = await db;
+    var res = await dbClient!.insert(table_users, user.toJson(),conflictAlgorithm: ConflictAlgorithm.replace);
+    return res;
   }
 
-  Future<int> add(User user) async {
-    Database db = await instance.db;
-    return await db.insert('users', user.toJson());
+  Future<User?> getLoginUser(String email, String password) async {
+    var dbClient = await db;
+    var res = await dbClient!.rawQuery("SELECT * FROM $table_users WHERE "
+        "$email = '$email' AND "
+        "$password = '$password'");
+
+    if (res.length > 0) {
+      return User.fromJson(res.first);
+    }
+
+    return null;
   }
-  // //insertion
-  // Future<int> saveUser(User user) async {
-  //   var dbClient = await db;
-  //   print(user.name);
-  //   int res = await dbClient.insert("User", user.toMap());
-  //   List<Map> list = await dbClient.rawQuery('SELECT * FROM User');
-  //   print(list);
-  //   return res;
-  // }
 
-  // //deletion
-  // Future<int> deleteUser(User user) async {
-  //   var dbClient = await db;
-  //   int res = await dbClient.delete("User");
-  //   return res;
-  // }
+  Future<int> updateUser(User user) async {
+    var dbClient = await db;
+    var res = await dbClient!.update(table_users, user.toJson(),
+        where: '$email = ?', whereArgs: [user.email]);
+    return res;
+  }
 
-  // Future<User> selectUser(User user) async {
-  //   print("Select User");
-  //   print(user.username);
-  //   print(user.password);
-  //   var dbClient = await db;
-  //   List<Map> maps = await dbClient.query(tableUser,
-  //       columns: [columnUserName, columnPassword],
-  //       where: "$columnUserName = ? and $columnPassword = ?",
-  //       whereArgs: [user.username, user.password]);
-  //   print(maps);
-  //   if (maps.length > 0) {
-  //     print("User Exist !!!");
-  //     return user;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  Future<int> deleteUser(String email) async {
+    var dbClient = await db;
+    var res = await dbClient!
+        .delete(table_users, where: '$email = ?', whereArgs: [email]);
+    return res;
+  }
 }

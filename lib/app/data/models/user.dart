@@ -5,7 +5,7 @@ class User {
   final String email;
   final String password;
 
-  User(
+  User( 
       {required this.id,
       required this.firstname,
       required this.lastname,

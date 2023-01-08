@@ -1,23 +1,51 @@
 import 'package:get/get.dart';
+import 'package:podcast_ba/app/data/db/db_helper.dart';
+import 'package:podcast_ba/app/data/models/user.dart';
+import 'package:podcast_ba/app/modules/login/views/login_view.dart';
+import 'package:podcast_ba/app/modules/registration/views/registration_view.dart';
 
 class RegistrationController extends GetxController {
-  //TODO: Implement RegistrationController
-
-  final count = 0.obs;
+  int id = 1;
+  final ifname = ''.obs;
+  final ilname = ''.obs;
+  final iemail = ''.obs;
+  final ipassword = ''.obs;
+  final ipasswordConfirm = ''.obs;
+  var dbHelper;
   @override
   void onInit() {
+    // TODO: implement onInit
     super.onInit();
+    dbHelper = DbHelper();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  signUp() async {
+    String firstname = ifname.value;
+    String lastname = ilname.value;
+    String email = iemail.value;
+    String passwd = ipassword.value;
+    String cpasswd = ipasswordConfirm.value;
 
-  @override
-  void onClose() {
-    super.onClose();
+    if (passwd != cpasswd) {
+      Get.snackbar("Ops", "password mismatch");
+      //alertDialog(context, 'Password Mismatch');
+    } else {
+      User uModel = User(
+          id: id,
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: passwd);
+      await dbHelper.saveData(uModel).then((userData) {
+        //alertDialog(context, "Successfully Saved");
+        Get.snackbar("congrats", "Succesfull registration");
+        Get.to(LoginView());
+        id++;
+      }).catchError((error) {
+        print(error);
+        //alertDialog(context, "Error: Data Save Fail");
+        Get.snackbar("Ops", "something went wrong");
+      });
+    }
   }
-
-  void increment() => count.value++;
 }
