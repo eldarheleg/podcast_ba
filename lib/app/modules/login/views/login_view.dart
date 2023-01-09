@@ -5,7 +5,6 @@ import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
 import 'package:podcast_ba/app/common/styles.dart';
 import 'package:podcast_ba/app/modules/widgets/rounded_button.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -27,7 +26,7 @@ class LoginView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(loginImage,scale: 0.5,),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               const Text(
                 'Log in',
                 style: TextStyle(
