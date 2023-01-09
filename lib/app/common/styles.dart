@@ -14,13 +14,11 @@ const mediumBoldText = TextStyle(
 );
 
 const xlargeText = TextStyle(
-  color: textColorBlack,
-  fontSize: extraExtraLarge,
-  fontWeight: FontWeight.bold
-);
+    color: textColorBlack,
+    fontSize: extraExtraLarge,
+    fontWeight: FontWeight.bold);
 
 const largeText = TextStyle(
-  color: textColor,
   fontSize: large,
 );
 
@@ -32,3 +30,5 @@ const linkText = TextStyle(
 const largeTextButton = TextStyle(
   fontSize: large,
 );
+
+const hintText = TextStyle(fontSize: 18, color: primaryColor);

@@ -88,10 +88,10 @@ class WelcomeView extends GetView<WelcomeController> {
   }
 
   signUp() {
-    Get.to(RegistrationView());
+    Get.to(()=> RegistrationView(),transition: Transition.leftToRight);
   }
 
   roundedButtonFunction() {
-    Get.to(const LoginView());
+    Get.to(()=> LoginView(),transition: Transition.rightToLeft);
   }
 }

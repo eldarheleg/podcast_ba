@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/data/db/db_helper.dart';
 import 'package:podcast_ba/app/data/models/user.dart';
@@ -23,17 +26,16 @@ class LoginController extends GetxController {
     String password = passController.text;
 
     if (email.isEmpty) {
-      
-      Get.snackbar("Ops", "Please Enter User ID",
+      Get.snackbar("", "", titleText: Center(child: Text("Ops",textAlign: TextAlign.center,)),
           backgroundColor: primaryColor, messageText: Text("nestoo",style: TextStyle(fontSize: 18,),textAlign: TextAlign.center,));
     } else if (password.isEmpty) {
-      Get.snackbar("Ops", "Please Enter Password",
+      Get.snackbar("Ops", "Please enter password",
           backgroundColor: primaryColor);
     } else {
       await dbHelper.getLoginUser(email, password).then((userData) {
         if (userData != null) {
           setSP(userData).whenComplete(() {
-            Get.offAll(HomeView());
+            Get.offAll(HomeView(),transition: Transition.fadeIn);
           });
         } else {
           Get.snackbar("Ops", "User not found", backgroundColor: primaryColor);

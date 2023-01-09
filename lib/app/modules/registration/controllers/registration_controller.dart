@@ -39,7 +39,7 @@ class RegistrationController extends GetxController {
       await dbHelper.saveData(uModel).then((userData) {
         //alertDialog(context, "Successfully Saved");
         Get.snackbar("congrats", "Succesfull registration");
-        Get.to(LoginView());
+        Get.to(LoginView(), transition: Transition.leftToRight);
         id++;
       }).catchError((error) {
         print(error);
