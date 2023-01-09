@@ -1,9 +1,9 @@
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-
-import 'package:podcast_ba/app/data/models/user.dart';
-import 'package:sqflite/sqflite.dart';
+// Package imports:
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+// Project imports:
+import 'package:podcast_ba/app/data/models/user.dart';
 
 class DbHelper {
   static Database? _db;

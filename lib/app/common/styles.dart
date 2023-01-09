@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/spaces.dart';
 

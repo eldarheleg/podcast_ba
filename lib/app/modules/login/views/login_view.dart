@@ -1,11 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
 import 'package:podcast_ba/app/common/styles.dart';
 import 'package:podcast_ba/app/modules/widgets/rounded_button.dart';
-
 import '../controllers/login_controller.dart';
 
 class LoginView extends StatelessWidget {

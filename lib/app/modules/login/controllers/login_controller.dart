@@ -1,14 +1,16 @@
+// Dart imports:
 import 'dart:ui';
 
+// Flutter imports:
 import 'package:flutter/widgets.dart';
+// Package imports:
 import 'package:get/get.dart';
-import 'package:path/path.dart';
+// Project imports:
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/data/db/db_helper.dart';
 import 'package:podcast_ba/app/data/models/user.dart';
 import 'package:podcast_ba/app/modules/home/views/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqflite.dart';
 
 class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();

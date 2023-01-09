@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:get/get.dart';
 
+// Project imports:
 import '../controllers/profile_controller.dart';
 
 class ProfileBinding extends Bindings {

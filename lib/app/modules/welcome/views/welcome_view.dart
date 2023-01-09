@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
 import 'package:podcast_ba/app/common/spaces.dart';
@@ -8,7 +12,6 @@ import 'package:podcast_ba/app/common/styles.dart';
 import 'package:podcast_ba/app/modules/login/views/login_view.dart';
 import 'package:podcast_ba/app/modules/registration/views/registration_view.dart';
 import 'package:podcast_ba/app/modules/widgets/rounded_button.dart';
-
 import '../controllers/welcome_controller.dart';
 
 class WelcomeView extends GetView<WelcomeController> {
