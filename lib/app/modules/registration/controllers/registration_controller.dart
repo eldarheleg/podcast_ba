@@ -26,8 +26,8 @@ class RegistrationController extends GetxController {
     String passwd = ipassword.value;
     String cpasswd = ipasswordConfirm.value;
 
-    if (passwd != cpasswd) {
-      Get.snackbar("Ops", "password mismatch");
+    if (passwd != cpasswd || firstname.isEmpty || lastname.isEmpty || email.isEmpty || passwd.isEmpty || cpasswd.isEmpty) {
+      Get.snackbar("Ops", "Fill every field and check passwords");
       //alertDialog(context, 'Password Mismatch');
     } else {
       User uModel = User(

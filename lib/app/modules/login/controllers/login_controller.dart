@@ -1,6 +1,6 @@
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/data/db/db_helper.dart';
 import 'package:podcast_ba/app/data/models/user.dart';
 import 'package:podcast_ba/app/modules/home/views/home_view.dart';
@@ -14,7 +14,6 @@ class LoginController extends GetxController {
 
   var dbHelper;
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     dbHelper = DbHelper();
   }
@@ -24,10 +23,12 @@ class LoginController extends GetxController {
     String password = passController.text;
 
     if (email.isEmpty) {
-      Get.dialog(Text("Please Enter User ID"));
+      
+      Get.snackbar("Ops", "Please Enter User ID",
+          backgroundColor: primaryColor, messageText: Text("nestoo",style: TextStyle(fontSize: 18,),textAlign: TextAlign.center,));
     } else if (password.isEmpty) {
-      Get.dialog(Text("Please Enter Password"));
-      //alertDialog(context, "Please Enter Password");
+      Get.snackbar("Ops", "Please Enter Password",
+          backgroundColor: primaryColor);
     } else {
       await dbHelper.getLoginUser(email, password).then((userData) {
         if (userData != null) {
@@ -35,13 +36,12 @@ class LoginController extends GetxController {
             Get.offAll(HomeView());
           });
         } else {
-          //alertDialog(context, "Error: User Not Found");
-          Get.snackbar("Ops", "User not found");
+          Get.snackbar("Ops", "User not found", backgroundColor: primaryColor);
         }
       }).catchError((error) {
         print(error);
-        //alertDialog(context, "Error: Login Fail");
-        Get.snackbar("Ops", "Login fail");
+        Get.snackbar("Ops", "Login fail, try again",
+            backgroundColor: primaryColor);
       });
     }
   }

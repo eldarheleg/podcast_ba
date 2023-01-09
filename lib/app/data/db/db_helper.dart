@@ -5,11 +5,10 @@ import 'package:podcast_ba/app/data/models/user.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-
 class DbHelper {
   static Database? _db;
 
-  static const String db_name = 'podcast.db';
+  static const String db_name = 'database.db';
   static const String table_users = 'users';
   static const int version = 1;
 
@@ -27,29 +26,33 @@ class DbHelper {
   }
 
   initDb() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, db_name);
+    // Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    // String path = join(documentsDirectory.path, db_name);
+    var databasesPath = await getDatabasesPath();
+    String path = join(databasesPath, db_name);
     var db = await openDatabase(path, version: version, onCreate: _onCreate);
     return db;
   }
 
   _onCreate(Database db, int intVersion) async {
-    await db.execute("CREATE TABLE $table_users (id INTEGER PRIMARY KEY,$firstName TEXT,$lastName TEXT,$email TEXT,$password TEXT)",);
+    await db.execute(
+      '''
+      CREATE TABLE $table_users (id INTEGER PRIMARY KEY,$firstName TEXT,$lastName TEXT,$email TEXT,$password TEXT)''',
+    );
   }
 
   Future<int> saveData(User user) async {
     var dbClient = await db;
-    var res = await dbClient!.insert(table_users, user.toJson(),conflictAlgorithm: ConflictAlgorithm.replace);
+    var res = await dbClient!.insert(table_users, user.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
     return res;
   }
 
   Future<User?> getLoginUser(String email, String password) async {
     var dbClient = await db;
-    var res = await dbClient!.rawQuery("SELECT * FROM $table_users WHERE "
-        "$email = '$email' AND "
-        "$password = '$password'");
-
-    if (res.length > 0) {
+    var res = await dbClient!.query('users',
+        where: 'email = ? AND password = ?', whereArgs: [email, password]);
+    if (res.isNotEmpty) {
       return User.fromJson(res.first);
     }
 

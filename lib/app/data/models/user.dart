@@ -14,11 +14,11 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'] as int,
-      firstname: json['firstname'] as String,
-      lastname: json['lastname'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
+      id: json['id'],
+      firstname: json['firstname'],
+      lastname: json['lastname'],
+      email: json['email'],
+      password: json['password'],
     );
   }
 
