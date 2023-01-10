@@ -50,13 +50,20 @@ class DbHelper {
 
   Future<User?> getLoginUser(String email, String password) async {
     var dbClient = await db;
-    var res = await dbClient!.query('users',
+    var result = await dbClient!.query('users',
         where: 'email = ? AND password = ?', whereArgs: [email, password]);
-    if (res.isNotEmpty) {
-      return User.fromJson(res.first);
+    if (result.isNotEmpty) {
+      return User.fromJson(result.first);
     }
 
     return null;
+  }
+
+  Future<bool> userExists(String email) async {
+    var dbClient = await db;
+    var result =
+        await dbClient!.query('users', where: 'email = ?', whereArgs: [email]);
+    return result.isNotEmpty;
   }
 
   Future<int> updateUser(User user) async {

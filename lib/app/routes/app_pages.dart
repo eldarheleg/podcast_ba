@@ -12,13 +12,13 @@ import '../modules/registration/bindings/registration_binding.dart';
 import '../modules/registration/views/registration_view.dart';
 import '../modules/welcome/bindings/welcome_binding.dart';
 import '../modules/welcome/views/welcome_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.WELCOME;
+  static const HOME = Routes.HOME;
 
   static final routes = [
     GetPage(

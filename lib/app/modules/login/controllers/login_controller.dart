@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:ui';
-
 // Flutter imports:
 import 'package:flutter/widgets.dart';
 // Package imports:
@@ -13,11 +10,13 @@ import 'package:podcast_ba/app/modules/home/views/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
+  final Future<SharedPreferences> _pref = SharedPreferences.getInstance();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  Future<SharedPreferences> _pref = SharedPreferences.getInstance();
+  bool loggedIn = false;
 
   var dbHelper;
+  @override
   void onInit() {
     super.onInit();
     dbHelper = DbHelper();
@@ -27,26 +26,57 @@ class LoginController extends GetxController {
     String email = emailController.text;
     String password = passController.text;
 
-    if (email.isEmpty) {
-      Get.snackbar("", "", titleText: Center(child: Text("Ops",textAlign: TextAlign.center,)),
-          backgroundColor: primaryColor, messageText: Text("nestoo",style: TextStyle(fontSize: 18,),textAlign: TextAlign.center,));
-    } else if (password.isEmpty) {
-      Get.snackbar("Ops", "Please enter password",
-          backgroundColor: primaryColor);
+    if (email.isEmpty || password.isEmpty) {
+      Get.snackbar(
+        ":(",
+        "",
+        backgroundColor: primaryColor,
+        messageText: const Text(
+          "Invalid email or password",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: whiteColor),
+          textAlign: TextAlign.center,
+        ),
+      );
     } else {
-      await dbHelper.getLoginUser(email, password).then((userData) {
-        if (userData != null) {
-          setSP(userData).whenComplete(() {
-            Get.offAll(HomeView(),transition: Transition.fadeIn);
-          });
-        } else {
-          Get.snackbar("Ops", "User not found", backgroundColor: primaryColor);
-        }
-      }).catchError((error) {
-        print(error);
-        Get.snackbar("Ops", "Login fail, try again",
-            backgroundColor: primaryColor);
-      });
+      await dbHelper.getLoginUser(email, password).then(
+        (userData) {
+          if (userData != null) {
+            setSP(userData).whenComplete(() {
+              Get.offAll(const HomeView(), transition: Transition.fadeIn);
+              loggedIn = true;
+            });
+          } else {
+            Get.snackbar(
+              ":(",
+              "",
+              backgroundColor: primaryColor,
+              messageText: const Text(
+                "User not found",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: whiteColor),
+                textAlign: TextAlign.center,
+              ),
+            );
+          }
+        },
+      ).catchError(
+        (error) {
+          Get.snackbar(
+            ":(",
+            "",
+            backgroundColor: primaryColor,
+            messageText: const Text(
+              "Login fail, try again later",
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, color: whiteColor),
+              textAlign: TextAlign.center,
+            ),
+          );
+        },
+      );
     }
   }
 

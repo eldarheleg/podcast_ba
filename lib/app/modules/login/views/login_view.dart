@@ -1,14 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:get/get.dart';
-
 // Project imports:
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
 import 'package:podcast_ba/app/common/styles.dart';
-import 'package:podcast_ba/app/modules/widgets/rounded_button.dart';
+import 'package:podcast_ba/app/modules/welcome/views/welcome_view.dart';
+
 import '../controllers/login_controller.dart';
 
 class LoginView extends StatelessWidget {
@@ -22,54 +21,78 @@ class LoginView extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(loginImage,scale: 0.5,),
-              const SizedBox(height: 20,),
-              const Text(
-                'Log in',
-                style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
+          padding: const EdgeInsets.all(40.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: height * 0.2,
                 ),
-                
-              ),
-              const SizedBox(height: 40),
-              TextFormField(
-                style: largeText,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primaryColor,width: 2,strokeAlign: StrokeAlign.inside)),
-                  hintText: 'Email',
-                  hintStyle: hintText
+                Image.asset(loginImage,
+                    filterQuality: FilterQuality.high, scale: 3),
+                const SizedBox(height: 60),
+                TextFormField(
+                  style: largeText,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: primaryColor,
+                              width: 2,
+                              strokeAlign: StrokeAlign.inside)),
+                      hintText: 'Email',
+                      hintStyle: hintText),
+                  controller: controller.emailController,
                 ),
-                controller: controller.emailController,
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                style: largeText,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primaryColor,width: 2,strokeAlign: StrokeAlign.inside)),
-                  hintText: 'Password',
-                  hintStyle: hintText
+                const SizedBox(height: 10),
+                TextFormField(
+                  style: largeText,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: primaryColor,
+                              width: 2,
+                              strokeAlign: StrokeAlign.inside)),
+                      hintText: 'Password',
+                      hintStyle: hintText),
+                  obscureText: true,
+                  controller: controller.passController,
                 ),
-                obscureText: true,
-                controller: controller.passController,
-              ),
-              const SizedBox(height: 50),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(fixedSize: Size(width, height*0.07),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),backgroundColor: primaryColor),
-                child: const Text('Log in', style: largeText,),
-                onPressed: () => controller.login(),
-              ),
-              
-            ],
+                const SizedBox(height: 80),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(width, height * 0.06),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      backgroundColor: primaryColor),
+                  child: const Text(
+                    'Log in',
+                    style: largeText,
+                  ),
+                  onPressed: () => controller.login(),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(width, height * 0.06),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      backgroundColor: whiteColor,
+                      foregroundColor: primaryColor),
+                  child: const Text(
+                    'Back',
+                    style: largeText,
+                  ),
+                  onPressed: () => Get.off(() => const WelcomeView(),
+                      transition: Transition.leftToRight),
+                ),
+              ],
+            ),
           ),
         ),
       ),
