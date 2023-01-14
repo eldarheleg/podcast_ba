@@ -1,24 +1,32 @@
-// Package imports:
 import 'package:get/get.dart';
 
-// Project imports:
+import '../modules/categories/bindings/categories_binding.dart';
+import '../modules/categories/views/categories_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/navigation/bindings/navigation_binding.dart';
+import '../modules/navigation/views/navigation_view.dart';
+import '../modules/playlists/bindings/playlists_binding.dart';
+import '../modules/playlists/views/playlists_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/registration/bindings/registration_binding.dart';
 import '../modules/registration/views/registration_view.dart';
 import '../modules/welcome/bindings/welcome_binding.dart';
 import '../modules/welcome/views/welcome_view.dart';
+
+// Package imports:
+
+// Project imports:
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.WELCOME;
-  static const HOME = Routes.HOME;
+  static const NAVIGATION = Routes.NAVIGATION;
 
   static final routes = [
     GetPage(
@@ -45,6 +53,21 @@ class AppPages {
       name: _Paths.WELCOME,
       page: () => const WelcomeView(),
       binding: WelcomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.CATEGORIES,
+      page: () => const CategoriesView(),
+      binding: CategoriesBinding(),
+    ),
+    GetPage(
+      name: _Paths.PLAYLISTS,
+      page: () => const PlaylistsView(),
+      binding: PlaylistsBinding(),
+    ),
+    GetPage(
+      name: _Paths.NAVIGATION,
+      page: () => const NavigationView(),
+      binding: NavigationBinding(),
     ),
   ];
 }

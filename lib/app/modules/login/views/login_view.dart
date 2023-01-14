@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
                 SizedBox(
                   height: height * 0.2,
                 ),
-                Image.asset(loginImage,
+                Image.asset(loginManImg,
                     filterQuality: FilterQuality.high, scale: 3),
                 const SizedBox(height: 60),
                 TextFormField(

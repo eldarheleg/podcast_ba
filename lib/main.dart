@@ -17,7 +17,7 @@ Future<void> main() async {
     GetMaterialApp(
       theme: ThemeData(fontFamily: 'Lato'),
       debugShowCheckedModeBanner: false,
-      initialRoute: email == null ? AppPages.INITIAL:AppPages.HOME,
+      initialRoute: email == null ? AppPages.INITIAL:AppPages.NAVIGATION,
       getPages: AppPages.routes,
     ),
   );

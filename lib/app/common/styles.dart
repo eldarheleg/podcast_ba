@@ -17,7 +17,7 @@ const mediumBoldText = TextStyle(
 );
 
 const xlargeText = TextStyle(
-    color: textColorBlack,
+    color: blackColor,
     fontSize: extraExtraLarge,
     fontWeight: FontWeight.bold);
 

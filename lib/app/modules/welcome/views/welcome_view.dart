@@ -40,12 +40,12 @@ class WelcomeView extends GetView<WelcomeController> {
                         height: height * 0.6,
                         width: width,
                         child: Image.asset(
-                          welcomeScreenImage,
+                          welcomeMonkeyImg,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    Image.asset(playButtonImage),
+                    Image.asset(playActiveIcn),
                   ],
                 ),
                 const SizedBox(
