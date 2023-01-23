@@ -66,15 +66,8 @@ class WelcomeView extends GetView<WelcomeController> {
                 const SizedBox(
                   height: 30,
                 ),
-                roundedButtonStyle(
-                    height * 0.06,
-                    width,
-                    25,
-                    "Log In",
-                    primaryColor,
-                    whiteColor,
-                    largeTextButton,
-                    roundedButtonFunction),
+                roundedButtonStyle(height * 0.06, width, 25, "Log In",
+                    primaryColor, whiteColor, largeTextButton, logIn),
                 const SizedBox(
                   height: 10,
                 ),
@@ -83,14 +76,14 @@ class WelcomeView extends GetView<WelcomeController> {
               ],
             ),
           ),
-        ));
+        ),);
   }
 
   signUp() {
     Get.to(() => const RegistrationView(), transition: Transition.leftToRight);
   }
 
-  roundedButtonFunction() {
+  logIn() {
     Get.to(() => const LoginView(), transition: Transition.rightToLeft);
   }
 }

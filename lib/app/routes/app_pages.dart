@@ -8,6 +8,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
 import '../modules/navigation/views/navigation_view.dart';
+import '../modules/playing_now/bindings/playing_now_binding.dart';
+import '../modules/playing_now/views/playing_now_view.dart';
 import '../modules/playlists/bindings/playlists_binding.dart';
 import '../modules/playlists/views/playlists_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -68,6 +70,11 @@ class AppPages {
       name: _Paths.NAVIGATION,
       page: () => const NavigationView(),
       binding: NavigationBinding(),
+    ),
+    GetPage(
+      name: _Paths.PLAYING_NOW,
+      page: () => const PlayingNowView(),
+      binding: PlayingNowBinding(),
     ),
   ];
 }

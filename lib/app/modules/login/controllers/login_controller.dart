@@ -7,6 +7,7 @@ import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/data/db/db_helper.dart';
 import 'package:podcast_ba/app/data/models/user.dart';
 import 'package:podcast_ba/app/modules/home/views/home_view.dart';
+import 'package:podcast_ba/app/modules/navigation/views/navigation_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
@@ -43,7 +44,7 @@ class LoginController extends GetxController {
         (userData) {
           if (userData != null) {
             setSP(userData).whenComplete(() {
-              Get.offAll(const HomeView(), transition: Transition.fadeIn);
+              Get.offAll(const NavigationView(), transition: Transition.fadeIn);
               loggedIn = true;
             });
           } else {

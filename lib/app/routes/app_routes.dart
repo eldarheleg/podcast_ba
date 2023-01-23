@@ -11,6 +11,7 @@ abstract class Routes {
   static const CATEGORIES = _Paths.CATEGORIES;
   static const PLAYLISTS = _Paths.PLAYLISTS;
   static const NAVIGATION = _Paths.NAVIGATION;
+  static const PLAYING_NOW = _Paths.PLAYING_NOW;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const CATEGORIES = '/categories';
   static const PLAYLISTS = '/playlists';
   static const NAVIGATION = '/navigation';
+  static const PLAYING_NOW = '/playing-now';
 }

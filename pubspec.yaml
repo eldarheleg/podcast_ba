@@ -19,6 +19,7 @@ dependencies:
   path: ^1.8.2
   simple_gradient_text: ^1.2.4
   import_sorter: ^4.6.0
+  font_awesome_flutter: ^10.3.0
 
 flutter_native_splash:
   color: "#8873FE"
