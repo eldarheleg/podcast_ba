@@ -8,11 +8,12 @@ import 'package:podcast_ba/app/common/images.dart';
 // Project imports:
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    //HomeController controller = Get.put(HomeController());
+    HomeController controller = Get.put(HomeController());
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -22,7 +23,8 @@ class HomeView extends GetView<HomeController> {
           ),
           backgroundColor: whiteColor,
           centerTitle: true,
-          leading: IconButton(onPressed: (){}, icon: ImageIcon(AssetImage(menuIcn))),
+          leading: IconButton(
+              onPressed: () {}, icon: ImageIcon(AssetImage(menuIcn))),
           // leading: IconButton(
           //     onPressed: () async {
           //       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -32,15 +34,15 @@ class HomeView extends GetView<HomeController> {
           //     icon: const Icon(Icons.exit_to_app)),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.fetchPodcastsByGenre();
+                },
                 icon: Image.asset(
                   bellIcn,
                   color: iconsColor,
                 ))
           ],
         ),
-        body: Center(
-          child: Text("home is working"),
-        ));
+        body: Obx(() => Text(controller.genre.value)));
   }
 }
