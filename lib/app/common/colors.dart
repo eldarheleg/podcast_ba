@@ -12,3 +12,5 @@ const Color blackColor = Color(0xff000000);
 const Color backgroundColor = Color(0xffffffff);
 const Color iconsColor = Color(0xff130D32);
 const Color inactiveColor = Color(0xffA1A0A5);
+const Color orangeColor = Color(0xffD38312);
+const Color pinkColor = Color(0xffA83279);

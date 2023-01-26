@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController {
+  
   List<String> notifications = [
     "New feature update is now available",
     "You have a new message from John Doe",

@@ -8,6 +8,7 @@ import 'package:podcast_ba/app/data/models/podcast.dart';
 
 class HomeController extends GetxController {
   final _baseUrl = "https://listen-api.listennotes.com/api/v2/best_podcasts";
+  final _testUrl = "https://listen-api-test.listennotes.com/api/v2/best_podcasts";
 
   @override
   void onInit() {
@@ -21,8 +22,8 @@ class HomeController extends GetxController {
 
   Future<void> fetchPodcastsByGenre() async {
     var response = await http.get(
-      Uri.parse(_baseUrl),
-      headers: {'X-ListenAPI-Key': 'b9b4a810abc741a49bfabefcd7707552'},
+      Uri.parse(_testUrl),
+      //headers: {'X-ListenAPI-Key': 'b9b4a810abc741a49bfabefcd7707552'},
     );
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);

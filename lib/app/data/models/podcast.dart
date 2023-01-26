@@ -19,7 +19,7 @@ class Podcast {
   bool? isClaimed;
   String? description;
   LookingFor? lookingFor;
-  String? listenScore;
+  int? listenScore; //
   int? totalEpisodes;
   String? listennotesUrl;
   int? audioLengthSec;
