@@ -1,11 +1,11 @@
 import 'package:podcast_ba/app/data/models/podcast.dart';
 
 class Genre {
-  int? id;
+  String? id;
   String? name;
   int? total;
   bool? hasNext;
-  List<Podcasts>? podcasts;
+  List<Podcast>? podcasts;
   int? parentId;
   int? pageNumber;
   bool? hasPrevious;
@@ -32,9 +32,9 @@ class Genre {
     total = json['total'];
     hasNext = json['has_next'];
     if (json['podcasts'] != null) {
-      podcasts = <Podcasts>[];
+      podcasts = <Podcast>[];
       json['podcasts'].forEach((v) {
-        podcasts!.add(Podcasts.fromJson(v));
+        podcasts!.add(Podcast.fromJson(v));
       });
     }
     parentId = json['parent_id'];

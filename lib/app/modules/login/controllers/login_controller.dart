@@ -44,7 +44,7 @@ class LoginController extends GetxController {
         (userData) {
           if (userData != null) {
             setSP(userData).whenComplete(() {
-              Get.offAll(const NavigationView(), transition: Transition.fadeIn);
+              Get.offAll(NavigationView(), transition: Transition.fadeIn);
               loggedIn = true;
             });
           } else {

@@ -37,7 +37,7 @@ class RegistrationView extends GetView<RegistrationController> {
                         borderSide: BorderSide(
                             color: primaryColor,
                             width: 2,
-                            strokeAlign: StrokeAlign.inside),
+                            ),
                       ),
                       hintText: 'First Name',
                       hintStyle: hintText),
@@ -52,7 +52,7 @@ class RegistrationView extends GetView<RegistrationController> {
                         borderSide: BorderSide(
                             color: primaryColor,
                             width: 2,
-                            strokeAlign: StrokeAlign.inside),
+                            ),
                       ),
                       hintText: 'Last Name',
                       hintStyle: hintText),
@@ -67,7 +67,7 @@ class RegistrationView extends GetView<RegistrationController> {
                         borderSide: BorderSide(
                             color: primaryColor,
                             width: 2,
-                            strokeAlign: StrokeAlign.inside),
+                            ),
                       ),
                       hintText: 'Email',
                       hintStyle: hintText),
@@ -82,7 +82,7 @@ class RegistrationView extends GetView<RegistrationController> {
                         borderSide: BorderSide(
                             color: primaryColor,
                             width: 2,
-                            strokeAlign: StrokeAlign.inside),
+                            ),
                       ),
                       hintText: 'Password',
                       hintStyle: hintText),
@@ -98,7 +98,7 @@ class RegistrationView extends GetView<RegistrationController> {
                         borderSide: BorderSide(
                             color: primaryColor,
                             width: 2,
-                            strokeAlign: StrokeAlign.inside),
+                            ),
                       ),
                       hintText: 'Verify Password',
                       hintStyle: hintText),

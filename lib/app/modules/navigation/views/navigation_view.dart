@@ -12,20 +12,21 @@ import 'package:podcast_ba/app/modules/profile/views/profile_view.dart';
 
 import '../controllers/navigation_controller.dart';
 
-class NavigationView extends GetView<NavigationController> {
-  const NavigationView({Key? key}) : super(key: key);
+class NavigationView extends StatelessWidget {
+  NavigationView({Key? key}) : super(key: key);
   static final List<Widget> _pages = [
     const HomeView(),
     const CategoriesView(),
     const PlaylistsView(),
-    const ProfileView()
+    ProfileView()
   ];
+  NavigationController controller = Get.put(NavigationController());
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
           bottomNavigationBar: GetX<NavigationController>(
-            init: NavigationController(),
+            init: controller, 
             builder: (_) {
               return BottomNavigationBar(
                 iconSize: 35,

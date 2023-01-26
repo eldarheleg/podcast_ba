@@ -1,7 +1,7 @@
 import 'package:podcast_ba/app/data/models/extra.dart';
 import 'package:podcast_ba/app/data/models/looking_for.dart';
 
-class Podcasts {
+class Podcast {
   String? id;
   String? rss;
   String? type;
@@ -19,7 +19,7 @@ class Podcasts {
   bool? isClaimed;
   String? description;
   LookingFor? lookingFor;
-  int? listenScore;
+  String? listenScore;
   int? totalEpisodes;
   String? listennotesUrl;
   int? audioLengthSec;
@@ -30,7 +30,7 @@ class Podcasts {
   int? updateFrequencyHours;
   String? listenScoreGlobalRank;
 
-  Podcasts(
+  Podcast(
       {this.id,
       this.rss,
       this.type,
@@ -59,7 +59,7 @@ class Podcasts {
       this.updateFrequencyHours,
       this.listenScoreGlobalRank});
 
-  Podcasts.fromJson(Map<String, dynamic> json) {
+  Podcast.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     rss = json['rss'];
     type = json['type'];

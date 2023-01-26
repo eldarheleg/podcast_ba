@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
+import 'package:podcast_ba/app/modules/login/views/login_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
 import '../controllers/home_controller.dart';
@@ -23,15 +25,15 @@ class HomeView extends StatelessWidget {
           ),
           backgroundColor: whiteColor,
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {}, icon: ImageIcon(AssetImage(menuIcn))),
           // leading: IconButton(
-          //     onPressed: () async {
-          //       SharedPreferences prefs = await SharedPreferences.getInstance();
-          //       prefs.remove('email');
-          //       Get.off(() => const LoginView());
-          //     },
-          //     icon: const Icon(Icons.exit_to_app)),
+          //     onPressed: () {}, icon: const ImageIcon(AssetImage(menuIcn))),
+          leading: IconButton(
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.remove('email');
+                Get.off(() => const LoginView());
+              },
+              icon: const Icon(Icons.exit_to_app,color: blackColor,)),
           actions: [
             IconButton(
                 onPressed: () {
@@ -43,6 +45,26 @@ class HomeView extends StatelessWidget {
                 ))
           ],
         ),
-        body: Obx(() => Text(controller.genre.value)));
+        body: Obx(() => Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(controller.genre.value),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: controller.bestPodcasts.length,
+                      itemBuilder: (context, index) {
+                        var podcast = controller.bestPodcasts[index];
+                        return ListTile(
+                          title: Text(podcast.title!),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ));
   }
 }

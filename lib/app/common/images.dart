@@ -1,5 +1,5 @@
 const String welcomeMonkeyImg = "assets/images/monkey.jpg";
-const String loginManImg = "assets/images/login_icon.png";
+const String loginManImg = "assets/images/icons_login_profile.png";
 const String playActiveIcn = "assets/images/icons_play_active.png";
 const String playInactiveIcn = "assets/images/icons_play_inactive.png";
 const String menuIcn = "assets/images/icons_menu.png";

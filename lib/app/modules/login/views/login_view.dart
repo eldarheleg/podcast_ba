@@ -41,7 +41,7 @@ class LoginView extends StatelessWidget {
                           borderSide: BorderSide(
                               color: primaryColor,
                               width: 2,
-                              strokeAlign: StrokeAlign.inside)),
+                            )),
                       hintText: 'Email',
                       hintStyle: hintText),
                   controller: controller.emailController,
@@ -55,7 +55,7 @@ class LoginView extends StatelessWidget {
                           borderSide: BorderSide(
                               color: primaryColor,
                               width: 2,
-                              strokeAlign: StrokeAlign.inside)),
+                              )),
                       hintText: 'Password',
                       hintStyle: hintText),
                   obscureText: true,

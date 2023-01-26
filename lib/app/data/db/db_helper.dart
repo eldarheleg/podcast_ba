@@ -59,6 +59,12 @@ class DbHelper {
     return null;
   }
 
+  Future<String> getNameAndSurname(int id) async {
+    var dbClient = await db;
+    var res = await dbClient!.query('users', where: 'id = ?', whereArgs: [id]);
+    return res.isEmpty ? "" : res.first['firstname lastname'].toString();
+  }
+
   Future<bool> userExists(String email) async {
     var dbClient = await db;
     var result =

@@ -8,22 +8,25 @@ import 'package:podcast_ba/app/common/colors.dart';
 // Project imports:
 import '../controllers/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+class ProfileView extends StatelessWidget {
+  ProfileView({Key? key}) : super(key: key);
+
+  ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
+    //controller.fetchName();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileView'),
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: blackColor),
+        ),
         elevation: 0,
         backgroundColor: whiteColor,
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ProfileView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Center(
+        child: Text(controller.fname.value),
       ),
     );
   }
