@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
+import 'package:podcast_ba/app/modules/notification/views/notification_view.dart';
 
 // Project imports:
 import '../controllers/home_controller.dart';
@@ -32,7 +33,7 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                controller.fetchPodcastsByGenre();
+                Get.to(() => NotificationView());
               },
               icon: Image.asset(
                 bellIcn,

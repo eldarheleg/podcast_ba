@@ -14,6 +14,7 @@ abstract class Routes {
   static const PLAYING_NOW = _Paths.PLAYING_NOW;
   static const SETTINGS = _Paths.SETTINGS;
   static const ABOUT = _Paths.ABOUT;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const PLAYING_NOW = '/playing-now';
   static const SETTINGS = '/settings';
   static const ABOUT = '/about';
+  static const NOTIFICATION = '/notification';
 }

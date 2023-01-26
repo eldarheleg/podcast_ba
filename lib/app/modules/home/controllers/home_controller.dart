@@ -8,11 +8,18 @@ import 'package:podcast_ba/app/data/models/podcast.dart';
 
 class HomeController extends GetxController {
   final _baseUrl = "https://listen-api.listennotes.com/api/v2/best_podcasts";
-  
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    fetchPodcastsByGenre();
+  }
+
   RxString title = ''.obs;
   RxList<Podcast> bestPodcasts = <Podcast>[].obs;
 
-  Future fetchPodcastsByGenre() async {
+  Future<void> fetchPodcastsByGenre() async {
     var response = await http.get(
       Uri.parse(_baseUrl),
       headers: {'X-ListenAPI-Key': 'b9b4a810abc741a49bfabefcd7707552'},
