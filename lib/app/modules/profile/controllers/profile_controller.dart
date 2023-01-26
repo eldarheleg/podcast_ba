@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProfileController extends GetxController {
   RxString fname = ''.obs;
   RxString lname = ''.obs;
+  
 
   @override
   void onInit() {

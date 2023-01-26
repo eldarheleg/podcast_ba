@@ -24,56 +24,60 @@ class WelcomeView extends GetView<WelcomeController> {
           top: false,
           child: Padding(
             padding: const EdgeInsets.all(40.0),
-            child: Column(
-              children: [
-                Stack(
-                  alignment: AlignmentDirectional.bottomEnd,
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(100),
-                      ),
-                      child: SizedBox(
-                        height: height * 0.6,
-                        width: width,
-                        child: Image.asset(
-                          welcomeMonkeyImg,
-                          fit: BoxFit.cover,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 3),
+            physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40),
+                          bottomLeft: Radius.circular(40),
+                          bottomRight: Radius.circular(100),
+                        ),
+                        child: SizedBox(
+                          height: height * 0.55,
+                          width: width,
+                          child: Image.asset(
+                            welcomeMonkeyImg,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    Image.asset(playActiveIcn),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Podcast",
-                  style: xlargeText,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Listen your favourite podcast\nAnywhere, Anytime",
-                  style: largeText,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                roundedButtonStyle(height * 0.06, width, 25, "Log In",
-                    primaryColor, whiteColor, largeTextButton, logIn),
-                const SizedBox(
-                  height: 10,
-                ),
-                roundedButtonStyle(height * 0.06, width, 25, "Sign Up",
-                    whiteColor, primaryColor, largeTextButton, signUp),
-              ],
+                      Image.asset(playActiveIcn),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "Podcast",
+                    style: xlargeText,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "Listen your favourite podcast\nAnywhere, Anytime",
+                    style: largeText,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  roundedButtonStyle(height * 0.06, width, 25, "Log In",
+                      primaryColor, whiteColor, largeTextButton, logIn),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  roundedButtonStyle(height * 0.06, width, 25, "Sign Up",
+                      whiteColor, primaryColor, largeTextButton, signUp),
+                ],
+              ),
             ),
           ),
         ),);

@@ -8,9 +8,8 @@ import 'package:podcast_ba/app/data/models/podcast.dart';
 
 class HomeController extends GetxController {
   final _baseUrl = "https://listen-api.listennotes.com/api/v2/best_podcasts";
-  //Rx<Genre> genre = Genre().obs;
-  RxString genre = ''.obs;
-  //RxList<Podcast> podcasts = <Podcast>[].obs;
+  
+  RxString title = ''.obs;
   RxList<Podcast> bestPodcasts = <Podcast>[].obs;
 
   Future fetchPodcastsByGenre() async {
@@ -22,7 +21,7 @@ class HomeController extends GetxController {
       var json = jsonDecode(response.body);
 
       if (json != null) {
-        genre.value = json['name'];
+        title.value = json['name'];
         for (var podcast in json['podcasts']) {
           try {
             bestPodcasts.add(Podcast.fromJson(podcast));
@@ -33,7 +32,7 @@ class HomeController extends GetxController {
         }
       }
     } else {
-      print('failed to fetch');
+      log('failed to fetch');
     }
   }
 }
