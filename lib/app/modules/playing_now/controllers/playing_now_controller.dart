@@ -1,23 +1,9 @@
 import 'package:get/get.dart';
 
 class PlayingNowController extends GetxController {
-  //TODO: Implement PlayingNowController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  RxInt selectedIndex = 0.obs;
+  
+  setIndex(int index) {
+    selectedIndex.value = index;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

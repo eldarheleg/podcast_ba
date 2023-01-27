@@ -3,7 +3,8 @@ const String loginManImg = "assets/images/icons_login_profile.png";
 const String playActiveIcn = "assets/images/icons_play_active.png";
 const String playInactiveIcn = "assets/images/icons_play_inactive.png";
 const String menuIcn = "assets/images/icons_menu.png";
-const String bellIcn = "assets/images/icons_bell.png";
+const String bellEmptyIcn = "assets/images/icons_bell_empty.png";
+const String bellNotEmptyIcn = "assets/images/icons_bell_notempty.png";
 const String beautifulLandscapeImg =
     "assets/images/vector_beautiful_landscape.jpg";
 const String womanWithFlowersImg =

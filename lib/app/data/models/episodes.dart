@@ -48,21 +48,21 @@ class Episodes {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['link'] = this.link;
-    data['audio'] = this.audio;
-    data['image'] = this.image;
-    data['title'] = this.title;
-    data['thumbnail'] = this.thumbnail;
-    data['description'] = this.description;
-    data['pub_date_ms'] = this.pubDateMs;
-    data['guid_from_rss'] = this.guidFromRss;
-    data['listennotes_url'] = this.listennotesUrl;
-    data['audio_length_sec'] = this.audioLengthSec;
-    data['explicit_content'] = this.explicitContent;
-    data['maybe_audio_invalid'] = this.maybeAudioInvalid;
-    data['listennotes_edit_url'] = this.listennotesEditUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['link'] = link;
+    data['audio'] = audio;
+    data['image'] = image;
+    data['title'] = title;
+    data['thumbnail'] = thumbnail;
+    data['description'] = description;
+    data['pub_date_ms'] = pubDateMs;
+    data['guid_from_rss'] = guidFromRss;
+    data['listennotes_url'] = listennotesUrl;
+    data['audio_length_sec'] = audioLengthSec;
+    data['explicit_content'] = explicitContent;
+    data['maybe_audio_invalid'] = maybeAudioInvalid;
+    data['listennotes_edit_url'] = listennotesEditUrl;
     return data;
   }
 }

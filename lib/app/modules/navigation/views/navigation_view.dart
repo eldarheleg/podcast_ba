@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
@@ -15,7 +12,7 @@ import '../controllers/navigation_controller.dart';
 class NavigationView extends StatelessWidget {
   NavigationView({Key? key}) : super(key: key);
   static final List<Widget> _pages = [
-    const HomeView(),
+    HomeView(),
     const CategoriesView(),
     const PlaylistsView(),
     ProfileView()

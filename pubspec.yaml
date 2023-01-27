@@ -23,6 +23,7 @@ dependencies:
   basic_utils: ^5.4.2
   audioplayers: ^3.0.0
   cached_network_image: ^3.2.3
+  audio_service: ^0.18.9
 
 flutter_native_splash:
   color: "#8873FE"

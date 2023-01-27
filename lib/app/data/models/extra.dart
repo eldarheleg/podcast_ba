@@ -45,20 +45,20 @@ class Extra {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url1'] = this.url1;
-    data['url2'] = this.url2;
-    data['url3'] = this.url3;
-    data['google_url'] = this.googleUrl;
-    data['spotify_url'] = this.spotifyUrl;
-    data['youtube_url'] = this.youtubeUrl;
-    data['linkedin_url'] = this.linkedinUrl;
-    data['wechat_handle'] = this.wechatHandle;
-    data['patreon_handle'] = this.patreonHandle;
-    data['twitter_handle'] = this.twitterHandle;
-    data['facebook_handle'] = this.facebookHandle;
-    data['amazon_music_url'] = this.amazonMusicUrl;
-    data['instagram_handle'] = this.instagramHandle;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url1'] = url1;
+    data['url2'] = url2;
+    data['url3'] = url3;
+    data['google_url'] = googleUrl;
+    data['spotify_url'] = spotifyUrl;
+    data['youtube_url'] = youtubeUrl;
+    data['linkedin_url'] = linkedinUrl;
+    data['wechat_handle'] = wechatHandle;
+    data['patreon_handle'] = patreonHandle;
+    data['twitter_handle'] = twitterHandle;
+    data['facebook_handle'] = facebookHandle;
+    data['amazon_music_url'] = amazonMusicUrl;
+    data['instagram_handle'] = instagramHandle;
     return data;
   }
 }

@@ -39,7 +39,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -79,7 +79,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PLAYING_NOW,
-      page: () => const PlayingNowView(),
+      page: () => PlayingNowView(),
       binding: PlayingNowBinding(),
     ),
     GetPage(

@@ -6,32 +6,34 @@ import 'package:get/get.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
 import 'package:podcast_ba/app/data/models/podcast.dart';
+import 'package:podcast_ba/app/modules/notification/controllers/notification_controller.dart';
 import 'package:podcast_ba/app/modules/notification/views/notification_view.dart';
+import 'package:podcast_ba/app/modules/playing_now/controllers/playing_now_controller.dart';
+import 'package:podcast_ba/app/modules/playing_now/views/playing_now_view.dart';
 
 // Project imports:
 import '../controllers/home_controller.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+  NotificationController ncontroller = Get.put(NotificationController());
+  HomeController controller = Get.put(HomeController());
+  PlayingNowController playingNowController = Get.put(PlayingNowController());
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.put(HomeController());
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'Home',
-          style: TextStyle(color: blackColor),
-        ),
         backgroundColor: whiteColor,
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: const ImageIcon(
             AssetImage(menuIcn),
+            color: blackColor,
           ),
         ),
         actions: [
@@ -40,7 +42,9 @@ class HomeView extends StatelessWidget {
                 Get.to(() => const NotificationView());
               },
               icon: Image.asset(
-                bellIcn,
+                ncontroller.notifications.isEmpty
+                    ? bellEmptyIcn
+                    : bellNotEmptyIcn,
                 color: iconsColor,
               ))
         ],
@@ -50,76 +54,123 @@ class HomeView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(colors: [orangeColor, pinkColor])),
-                height: 50,
-                width: width,
-                //color: primaryColor,
-                child: Text(
-                  controller.title.value,
-                  style: const TextStyle(
-                      color: whiteColor,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 32),
-                )),
-            SizedBox(
-              height: 10,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20)),
+                  gradient: LinearGradient(
+                      colors: [whiteColor, primaryColor],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)),
+              height: 80,
               width: width,
+              child: Text(
+                controller.title.value,
+                style: const TextStyle(
+                  color: whiteColor,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 32,
+                  shadows: [
+                    Shadow(
+                      color: blackColor,
+                      offset: Offset(0.0, -2.0),
+                      blurRadius: 20,
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: controller.bestPodcasts.length,
-                itemBuilder: (context, index) {
-                  Podcast podcast = controller.bestPodcasts[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    elevation: 4,
-                    child: Container(
-                    height: 120,
-                    padding: const EdgeInsets.all(0),
-                    child: Row(children: [
-                      Expanded(
-                        flex: 6,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
-                          child: CachedNetworkImage(
-                                alignment: Alignment.bottomLeft,
-                                imageUrl: podcast.image!,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                        CircularProgressIndicator(
-                                            value: downloadProgress.progress),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: controller.bestPodcasts.isEmpty
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: primaryColor,
+                        ),
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: controller.bestPodcasts.length,
+                        itemBuilder: (context, index) {
+                          Podcast podcast = controller.bestPodcasts[index];
+                          return InkWell(
+                            onTap: () {
+                              Get.to(() => PlayingNowView());
+                              playingNowController.setIndex(index);
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              elevation: 10,
+                              child: Container(
+                                height: 120,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 7,
+                                      child: ClipRRect(
+                                        borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20)),
+                                        child: CachedNetworkImage(
+                                          alignment: Alignment.bottomLeft,
+                                          imageUrl: podcast.image!,
+                                          progressIndicatorBuilder: (context,
+                                                  url, downloadProgress) =>
+                                              Center(
+                                            child: CircularProgressIndicator(
+                                                color: primaryColor,
+                                                value:
+                                                    downloadProgress.progress),
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(
+                                      flex: 1,
+                                    ),
+                                    Expanded(
+                                      flex: 14,
+                                      child: Container(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              podcast.title!,
+                                              style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              podcast.language!,
+                                              style: const TextStyle(
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                      const Spacer(
-                        flex: 1,
-                      ),
-                      Expanded(
-                        flex: 14,
-                        child: Container(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Text(podcast.title!,
-                                  style: const TextStyle(
-                                      fontSize: 20.0, fontWeight: FontWeight.bold)),
-                              
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],),
-                  ),
-                  );
-                },
               ),
             )
           ],
@@ -128,4 +179,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-

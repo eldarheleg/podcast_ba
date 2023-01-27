@@ -16,7 +16,7 @@ class CategoriesView extends GetView<CategoriesController> {
         title: const Text('CategoriesView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'CategoriesView is working',
           style: TextStyle(fontSize: 20),

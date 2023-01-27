@@ -8,8 +8,8 @@ import 'package:podcast_ba/app/data/models/user.dart';
 class DbHelper {
   static Database? _db;
 
-  static const String db_name = 'database.db';
-  static const String table_users = 'users';
+  static const String dbName = 'database.db';
+  static const String tableUsers = 'users';
   static const int version = 1;
 
   static const String firstName = 'firstname';
@@ -29,7 +29,7 @@ class DbHelper {
     // Directory documentsDirectory = await getApplicationDocumentsDirectory();
     // String path = join(documentsDirectory.path, db_name);
     var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, db_name);
+    String path = join(databasesPath, dbName);
     var db = await openDatabase(path, version: version, onCreate: _onCreate);
     return db;
   }
@@ -37,13 +37,13 @@ class DbHelper {
   _onCreate(Database db, int intVersion) async {
     await db.execute(
       '''
-      CREATE TABLE $table_users (id INTEGER PRIMARY KEY,$firstName TEXT,$lastName TEXT,$email TEXT,$password TEXT)''',
+      CREATE TABLE $tableUsers (id INTEGER PRIMARY KEY,$firstName TEXT,$lastName TEXT,$email TEXT,$password TEXT)''',
     );
   }
 
   Future<int> saveData(User user) async {
     var dbClient = await db;
-    var res = await dbClient!.insert(table_users, user.toJson(),
+    var res = await dbClient!.insert(tableUsers, user.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     return res;
   }
@@ -59,12 +59,6 @@ class DbHelper {
     return null;
   }
 
-  Future<String> getNameAndSurname(int id) async {
-    var dbClient = await db;
-    var res = await dbClient!.query('users', where: 'id = ?', whereArgs: [id]);
-    return res.isEmpty ? "" : res.first['firstname lastname'].toString();
-  }
-
   Future<bool> userExists(String email) async {
     var dbClient = await db;
     var result =
@@ -74,7 +68,7 @@ class DbHelper {
 
   Future<int> updateUser(User user) async {
     var dbClient = await db;
-    var res = await dbClient!.update(table_users, user.toJson(),
+    var res = await dbClient!.update(tableUsers, user.toJson(),
         where: '$email = ?', whereArgs: [user.email]);
     return res;
   }
@@ -82,7 +76,7 @@ class DbHelper {
   Future<int> deleteUser(String email) async {
     var dbClient = await db;
     var res = await dbClient!
-        .delete(table_users, where: '$email = ?', whereArgs: [email]);
+        .delete(tableUsers, where: '$email = ?', whereArgs: [email]);
     return res;
   }
 }

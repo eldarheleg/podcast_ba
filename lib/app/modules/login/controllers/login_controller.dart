@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/data/db/db_helper.dart';
 import 'package:podcast_ba/app/data/models/user.dart';
-import 'package:podcast_ba/app/modules/home/views/home_view.dart';
 import 'package:podcast_ba/app/modules/navigation/views/navigation_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

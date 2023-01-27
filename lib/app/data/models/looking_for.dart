@@ -14,11 +14,11 @@ class LookingFor {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guests'] = this.guests;
-    data['cohosts'] = this.cohosts;
-    data['sponsors'] = this.sponsors;
-    data['cross_promotion'] = this.crossPromotion;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['guests'] = guests;
+    data['cohosts'] = cohosts;
+    data['sponsors'] = sponsors;
+    data['cross_promotion'] = crossPromotion;
     return data;
   }
 }

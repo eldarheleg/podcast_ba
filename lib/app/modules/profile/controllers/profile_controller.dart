@@ -1,16 +1,15 @@
 // Package imports:
+import 'dart:math';
+
 import 'package:get/get.dart';
-import 'package:podcast_ba/app/data/db/db_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileController extends GetxController {
   RxString fname = ''.obs;
   RxString lname = ''.obs;
-  
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     fetchName();
   }
