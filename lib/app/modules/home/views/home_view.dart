@@ -39,7 +39,7 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(() => const NotificationView());
+                Get.to(() => const NotificationView(),transition: Transition.rightToLeft);
               },
               icon: Image.asset(
                 ncontroller.notifications.isEmpty

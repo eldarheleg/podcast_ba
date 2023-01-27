@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:podcast_ba/app/common/colors.dart';
 import 'package:podcast_ba/app/common/images.dart';
+import 'package:podcast_ba/app/modules/categories/controllers/categories_controller.dart';
 import 'package:podcast_ba/app/modules/categories/views/categories_view.dart';
 import 'package:podcast_ba/app/modules/home/views/home_view.dart';
 import 'package:podcast_ba/app/modules/playlists/views/playlists_view.dart';
@@ -13,11 +14,12 @@ class NavigationView extends StatelessWidget {
   NavigationView({Key? key}) : super(key: key);
   static final List<Widget> _pages = [
     HomeView(),
-    const CategoriesView(),
+    CategoriesView(),
     const PlaylistsView(),
     ProfileView()
   ];
   NavigationController controller = Get.put(NavigationController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(
